@@ -35,7 +35,7 @@ Quick Documentation
 -------------------
 ### Composer
 Add the following to your composer.json
-```
+```json
 "require": {
     "ncgamers/qikbb": "1.0.*"
 }
@@ -43,8 +43,8 @@ Add the following to your composer.json
 
 ### PHP
 
-```
-// This assume that auto-loading is already done
+```php
+// This assumes that auto-loading is already done
 use qikbb\Engine;
 use qikbb\sets\DefaultBBSet;
 
