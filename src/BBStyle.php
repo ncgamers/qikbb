@@ -15,7 +15,8 @@ class BBStyle {
     public $tag;
     /** @var array $noTags tags that are not allowed within the current tag */
     public $noTags = [];
-    /** Only really makes sense to set to true when parseContent == false. The tag will be
+    /**
+     * Only really makes sense to set to true when parseContent == false. The tag will be
      * considered closed when found and will not output the BBCode even if no matching closer is
      * found.
      *
