@@ -53,11 +53,17 @@ class BBListStyle extends BBStyle {
                  * last element.
                  */
                 if ($child instanceof \DOMText) {
-                    if (count($tmp = explode('[*]', $child->nodeValue)) === 1) {
-                        $list[$last] .= $child->nodeValue;
-                    } else {
-                        $list = array_merge($list, $tmp);
-                    }
+                    // Extract each line of elements
+                    $tmp = explode('[*]', $child->nodeValue);
+
+                    // Anything before the first delimiter should be appended
+                    $list[$last] .= array_shift($tmp);
+                    // Merge the newly extract array with the existing list
+                    $list = array_merge($list, $tmp);
+
+                    // Get last index for appending
+                    end($list);
+                    $last = key($list);
                 } else {
                     $list[$last] .= $dom->saveXML($child);
                 }

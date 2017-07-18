@@ -47,4 +47,36 @@ class ParseListTest extends BBTestBase {
     public function testEmptyListElement() {
         $this->produces('[nlist][*]One[*][*]Two[/nlist]', '<ol><li>One</li><li>Two</li></ol>');
     }
+
+    /**
+     * Plain text trailing an external tag should be appended to the current list element.
+     */
+    public function testPlainAfterTag() {
+        $this->produces('[nlist][*]Before[b]Bold[/b]After[/nlist]',
+            '<ol><li>Before<span class="bold">Bold</span>After</li></ol>');
+    }
+
+    /**
+     * A delimiter after an external tag should create a new list element.
+     */
+    public function testDelimiterAfterTag() {
+        $this->produces('[nlist][*]Before[b]Bold[/b][*]New[/nlist]',
+            '<ol><li>Before<span class="bold">Bold</span></li><li>New</li></ol>');
+    }
+
+    /**
+     * A delimiter following plain text after an external tag should append and create.
+     */
+    public function testPlainDelimiterAfterTag() {
+        $this->produces('[nlist][*]Before[b]Bold[/b]After[*]New[/nlist]',
+            '<ol><li>Before<span class="bold">Bold</span>After</li><li>New</li></ol>');
+    }
+
+    /**
+     * Delimiters after external tags should continue to create new list elements.
+     */
+    public function testPlainDoubleDelimiterAfterTag() {
+        $this->produces('[nlist][*]Before[b]Bold[/b]After[*]New[*]Line[/nlist]',
+            '<ol><li>Before<span class="bold">Bold</span>After</li><li>New</li><li>Line</li></ol>');
+    }
 }
