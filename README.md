@@ -28,7 +28,7 @@ is any interest in this code I'll create a PHP 5 branch that removes the PHP 7 f
 
 Additionally PCRE Regex is required to use this. However, it is only used to tokenize the parser input string (which
 provides huge speed improvements over, for example, JBBCode's Tokenizer implementation). It is also used in the validators.
-Furthermore, if you wish to have list tag support DOM is required (generally compiled by default).
+Furthermore, multibyte string support is required (generally found in most distributions) and if you wish to have list tag support DOM is required (generally compiled by default).
 
 
 Quick Documentation
